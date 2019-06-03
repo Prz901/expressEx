@@ -7,11 +7,14 @@ Essa seção deve incluir as informações do usuário que agendou e também o h
 let agendamentos = require("../clinics");
 
 module.exports = app => {
-  app.get("/", function(req, res) {
-    res.render("../views/inicial");
+  app.get("/", function(req, resp) {
+    resp.render("../views/inicial");
   });
 
   app.get("/doug", function(req, res) {
-    res.send(agendamentos);
+    resp.send(agendamentos);
   });
+  app.post('/agendamentos', function(req, resp){
+    console.log(resp.send)
+  })
 };
