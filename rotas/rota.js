@@ -5,13 +5,29 @@ Essa seção deve incluir as informações do usuário que agendou e também o h
 
 */
 let agendamentos = require("../clinics");
+const bodyParse = require("body-parser");
 
 module.exports = app => {
   app.get("/", function(req, res) {
     res.render("../views/inicial");
   });
 
-  app.get("/doug", function(req, res) {
+  app.get("/agendados", function(req, res) {
     res.send(agendamentos);
+  });
+
+  app.use(
+    bodyParse.urlencoded({
+      extended: true
+    })
+  );
+  app.use(bodyParse.json());
+
+  app.get("/agendamentos", function(req, resp) {
+    console.log("criando os agendamentos");
+  });
+
+  app.post("/livros", function(req, resp) {
+    console.log(req.body);
   });
 };
